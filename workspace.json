@@ -1,6 +1,108 @@
 {
   "version": 2,
   "projects": {
+    "components": {
+      "root": "libs/components",
+      "sourceRoot": "libs/components/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/components/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/components"],
+          "options": {
+            "jestConfig": "libs/components/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/components/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/components",
+            "config": {
+              "configFolder": "libs/components/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "components-e2e": {
+      "root": "apps/components-e2e",
+      "sourceRoot": "apps/components-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/components-e2e/cypress.json",
+            "devServerTarget": "components:storybook",
+            "tsConfig": "apps/components-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "components:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/components-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "data": {
+      "root": "libs/data",
+      "sourceRoot": "libs/data/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/data/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data"],
+          "options": {
+            "jestConfig": "libs/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "query": {
       "root": "apps/query",
       "sourceRoot": "apps/query/src",
@@ -98,6 +200,28 @@
           "outputs": ["{options.outputFile}"],
           "options": {
             "lintFilePatterns": ["apps/query-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "state": {
+      "root": "libs/state",
+      "sourceRoot": "libs/state/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/state/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/state"],
+          "options": {
+            "jestConfig": "libs/state/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

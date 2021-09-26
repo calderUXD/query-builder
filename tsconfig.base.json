@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@query-builder/components": ["libs/components/src/index.ts"],
+      "@query-builder/data": ["libs/data/src/index.ts"],
+      "@query-builder/state": ["libs/state/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
