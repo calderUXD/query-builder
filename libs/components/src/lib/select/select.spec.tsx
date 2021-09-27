@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Data from './data';
+import Select from './select';
 
-describe('Data', () => {
+describe('Select', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Data />);
+    const { baseElement } = render(<Select />);
     expect(baseElement).toBeTruthy();
   });
 });
