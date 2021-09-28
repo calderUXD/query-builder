@@ -1,9 +1,7 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import Container from '../container/container';
 import Button from '../button/button';
-import ButtonProps from '../button/button';
 import { BsX } from "react-icons/bs";
 ;
 /* eslint-disable-next-line */

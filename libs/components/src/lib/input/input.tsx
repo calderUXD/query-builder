@@ -16,6 +16,7 @@ const StyledInput = styled.input`
   border: 1px solid ${ theme.border.dark };
   border-radius: ${theme.radius};
   outline: none;
+  padding: .25rem;
   ${dynamicStyles}
 `;
 
