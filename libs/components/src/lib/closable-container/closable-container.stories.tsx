@@ -1,17 +1,13 @@
 import { Story, Meta } from '@storybook/react';
 import {
-  ClosableContainer,
-  ClosableContainerProps,
+  ClosableContainer
 } from './closable-container';
 
 export default {
   component: ClosableContainer,
-  title: 'ClosableContainer',
+  title: 'Building Blocks / Closable Container',
 } as Meta;
 
-const Template: Story<ClosableContainerProps> = (args) => (
-  <ClosableContainer {...args} />
-);
-
-export const Primary = Template.bind({});
-Primary.args = {};
+export const Primary = () => {
+  return(<ClosableContainer onClear={() => alert("clearFired")}>form contents here</ClosableContainer>)
+}

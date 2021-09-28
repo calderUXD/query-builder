@@ -5,7 +5,7 @@ export const theme = {
         secondary: "#a8b5c6",
         none: "transparent"
     },
-    borders: {
+    border: {
         dark: "#c7d0db",
         light: "#e0e6ed"
     },

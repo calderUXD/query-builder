@@ -4,7 +4,7 @@ import { BsX, BsSearch } from "react-icons/bs";
 
 export default {
   component: Button,
-  title: 'Button',
+  title: 'Building Blocks / Buttons',
 } as Meta;
 
 export const Primary = () => {
@@ -18,6 +18,6 @@ export const Secondary = () => {
 export const NoStyle = () => {
   return(<Button btnTheme="none" onClick={() => alert("clicked")}><BsX size="1.5rem" /> No Style</Button>)
 }
-//export const Secondary = Template.bind({});
+
 
 

@@ -1,17 +1,18 @@
 import styled from '@emotion/styled';
+import Container from '../container/container';
 
 /* eslint-disable-next-line */
-export interface LabelProps {}
+export interface LabelProps {
+  text: string
+}
 
-const StyledLabel = styled.div`
-  color: pink;
+const StyledContainer = styled(Container)`
+  display: inline-flex;
 `;
 
-export function Label(props: LabelProps) {
+export function Label({text, ...props}: LabelProps) {
   return (
-    <StyledLabel>
-      <h1>Welcome to Label!</h1>
-    </StyledLabel>
+    <StyledContainer bg="dark" border="dark" {...props}>{text}</StyledContainer>
   );
 }
 

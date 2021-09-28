@@ -1,25 +1,38 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { theme } from "@query-builder/data";
+import { css } from '@emotion/react';
+import { theme } from '@query-builder/data';
+import { darken } from 'polished';
 
 /* eslint-disable-next-line */
 export interface ButtonProps {
-  btnTheme: string,
+  btnTheme: "primary" | "secondary" | "none",
   children: React.ReactNode,
   icon?: React.ReactNode,
   onClick: () => void
 }
 
+const dynamicStyle = ({btnTheme}:ButtonProps) => css`
+  background-color: ${theme.buttons[btnTheme]};
+  color: ${btnTheme === "none" ? theme.buttons.secondary : "#fff"};
+`;
+
+const bgHover = ({btnTheme}:ButtonProps) => css`
+  background-color: ${darken(0.08, `${theme.buttons[btnTheme]}`)};
+  color: ${btnTheme === "none" ? darken(0.1, `${theme.buttons.secondary}`) : "#fff"};
+`;
+
 const StyledButton = styled.div<ButtonProps>`
-  ${({btnTheme}) => btnTheme === "primary" && `background: ${theme.buttons.primary};`}
-  ${({btnTheme}) => btnTheme === "secondary" && `background: ${theme.buttons.secondary};`}
-  ${({btnTheme}) => btnTheme === "none" && `background: ${theme.buttons.none};`}
-  color: ${({btnTheme})=> btnTheme === "none" ? theme.buttons.secondary : "#fff"};
+  ${dynamicStyle};
   display: inline-flex;
   padding: .5rem 1rem;
   border-radius: ${theme.radius};
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  &:hover {
+    ${bgHover};
+  }
 `;
 
 const IconWrap = styled.div`
@@ -29,10 +42,9 @@ const IconWrap = styled.div`
   justify-content: center;
 `;
 
-
-export function Button({children, btnTheme, icon, onClick}: ButtonProps) {
+export function Button({children, btnTheme, icon, onClick, ...props}: ButtonProps) {
   return (
-    <StyledButton btnTheme={btnTheme} onClick={onClick}>
+    <StyledButton btnTheme={btnTheme} onClick={onClick} {...props}>
       {icon && <IconWrap>{icon}</IconWrap>}
       {children}
     </StyledButton>
