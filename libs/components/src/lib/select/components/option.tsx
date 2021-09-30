@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 type SelectOptionProps = {
-    onClick: (e: any) => void
+    onClick: (e: never) => void
 }
   
 const SelectOption = styled.div<SelectOptionProps>`

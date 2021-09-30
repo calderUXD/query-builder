@@ -15,7 +15,6 @@ export interface SelectProps {
   placeholder: string
 }
 
-
 export function Select({options, onSelect, placeholder}: SelectProps) {
   const [visible, setVisibility] = useState(false);
   const [selectedOption, setSelectedOption] = useState<null | string>(null);
