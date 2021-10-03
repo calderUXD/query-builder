@@ -4,7 +4,11 @@ import { theme } from '@query-builder/data';
 import { darken } from 'polished';
 
 /* eslint-disable-next-line */
-export interface InputProps {}
+export interface InputProps {
+  type?: string,
+  onChange: (e:any) => void,
+  value: string | number
+}
 
 const dynamicStyles = () => css`
   &:focus{
@@ -24,6 +28,11 @@ export function Input({...props}: InputProps) {
   return (
     <StyledInput {...props} />
   );
+}
+
+Input.defaultProps = {
+  onChange: (e:any) => null,
+  value: ""
 }
 
 export default Input;

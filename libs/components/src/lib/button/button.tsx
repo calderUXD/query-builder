@@ -9,7 +9,8 @@ export interface ButtonProps {
   btnTheme: "primary" | "secondary" | "none",
   children: React.ReactNode,
   icon?: React.ReactNode,
-  onClick: () => void
+  onClick: () => void,
+  css?: any
 }
 
 const dynamicStyle = ({btnTheme}:ButtonProps) => css`
@@ -42,7 +43,7 @@ const IconWrap = styled.div`
   justify-content: center;
 `;
 
-export function Button({children, btnTheme, icon, onClick, ...props}: ButtonProps) {
+export function Button({children, btnTheme, icon, css, onClick, ...props}: ButtonProps) {
   return (
     <StyledButton btnTheme={btnTheme} onClick={onClick} {...props}>
       {icon && <IconWrap>{icon}</IconWrap>}

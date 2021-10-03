@@ -6,21 +6,30 @@ import styled from '@emotion/styled';
 import DropDown from './components/dropdown';
 import Input from './components/input';
 import SelectOption from './components/option';
-import OutsideClickHandler from "react-outside-click-handler";
+import { useOnClickOutside } from './clickOutside';
+//import OutsideClickHandler from "react-outside-click-handler";
 
 /* eslint-disable-next-line */
 export interface SelectProps {
   options: string[],
   onSelect: (e:string) => void,
-  placeholder: string
+  placeholder: string,
+  width: string,
+  selected: null | string,
+  controlled: boolean
 }
 
-export function Select({options, onSelect, placeholder}: SelectProps) {
+export function Select({options, onSelect, placeholder, selected, controlled, ...props}: SelectProps) {
   const [visible, setVisibility] = useState(false);
   const [selectedOption, setSelectedOption] = useState<null | string>(null);
 
   const referenceRef = useRef(null);
   const popperRef = useRef(null);
+  const clickOutRef = useRef(null)
+
+  useOnClickOutside(clickOutRef, () => setVisibility(false));
+
+  const selectedValue = controlled ? selected : selectedOption;
 
   const modifiers = useMemo(
     () => [
@@ -57,46 +66,41 @@ export function Select({options, onSelect, placeholder}: SelectProps) {
   );
 
   const toggleDropdown = () => setVisibility(!visible);
-
   const hide = () => setVisibility(false);
 
   const optionSelected = (option:string) => {
-    console.log("selected", option);
-    setSelectedOption(option);
+    !controlled ? setSelectedOption(option) : onSelect(option);;
     toggleDropdown();
-    onSelect(option);
   }
 
   return (
-    <OutsideClickHandler onOutsideClick={hide}>
-      <SelectWrap>
-        <div ref={referenceRef}><Input onClick={toggleDropdown} value={selectedOption} placeholder={placeholder} /></div>
-        <div ref={popperRef} style={styles.popper} {...attributes.popper}>
-          <DropDown style={styles.offset} visible={visible}>
-            {options.map((option, i) => 
-              <SelectOption onClick={(e) => optionSelected(option)} key={i}>{option}</SelectOption>
-            )}
-          </DropDown>
-        </div>
-      </SelectWrap>
-    </OutsideClickHandler>
+    <SelectWrap ref={clickOutRef}>
+          <div style={{width: "100%"}} ref={referenceRef}>
+            <Input onClick={toggleDropdown} value={selectedValue} placeholder={placeholder} />
+          </div>
+          <div ref={popperRef} style={styles.popper} {...attributes.popper}>
+            <DropDown style={styles.offset} visible={visible}>
+              {
+                options.map((option, i) => <SelectOption onClick={() => optionSelected(option)} key={i}>{option}</SelectOption>
+              )}
+            </DropDown>
+          </div>
+    </SelectWrap>
   );
 }
 
 const SelectWrap = styled.div`
   display: block;
-`;
-
-const Option = styled.div`
-  
+  width: 100%;
 `;
 
 Select.defaultProps = {
   options: ["one", "two", "three"],
   placeholder: "Select Something...",
+  width: "auto",
+  controlled: false,
+  selected: null,
   onSelect: () => null
 }
-
-
 
 export default Select;

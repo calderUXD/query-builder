@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import Container from '../container/container';
 import Button from '../button/button';
@@ -15,12 +16,16 @@ const IconButton = css`
   padding-right: .15rem;
 `;
 
+const Body = styled.div`
+  width: 100%;
+`;
+
 
 export function ClosableContainer({children, onClear}: ClosableContainerProps) {
   return (
     <Container bg="light" border="dark" padding="1.5rem .5rem">
       <Button btnTheme="none" onClick={onClear} css={IconButton}><BsX size="1.5rem" /></Button>
-      <div>{children}</div>
+      <Body>{children}</Body>
     </Container>
   );
 }

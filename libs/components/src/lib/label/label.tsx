@@ -8,6 +8,8 @@ export interface LabelProps {
 
 const StyledContainer = styled(Container)`
   display: inline-flex;
+  margin-right: 1rem;
+  padding: 0 .5rem;
 `;
 
 export function Label({text, ...props}: LabelProps) {

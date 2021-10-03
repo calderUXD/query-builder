@@ -1,3 +1,4 @@
+export * from './lib/rule/rule';
 export * from './lib/input/input';
 export * from './lib/label/label';
 export * from './lib/closable-container/closable-container';

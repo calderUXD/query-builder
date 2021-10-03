@@ -1,10 +1,11 @@
 export interface SelectOption {
-    label: string,
     value: string,
     type?: "string" | "int"
 };
 
-export type SelectData = SelectOption[];
+export type SelectData = {
+   [key: string] : SelectOption
+} ;
 
 export interface OperatorTypes {
     string: SelectData,
