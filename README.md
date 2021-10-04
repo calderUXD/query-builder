@@ -3,6 +3,7 @@
 # QueryBuilder
 
 Test Project
+[deployed build](https://adoring-blackwell-377995.netlify.app/)
 
 ## Project Setup
 
