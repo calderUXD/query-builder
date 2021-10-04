@@ -7,7 +7,8 @@ import { darken } from 'polished';
 export interface InputProps {
   type?: string,
   onChange: (e:any) => void,
-  value: string | number
+  value: string | number,
+  placeholder?: string
 }
 
 const dynamicStyles = () => css`
@@ -32,7 +33,8 @@ export function Input({...props}: InputProps) {
 
 Input.defaultProps = {
   onChange: (e:any) => null,
-  value: ""
+  value: "",
+  placeholder: "Enter Value"
 }
 
 export default Input;
