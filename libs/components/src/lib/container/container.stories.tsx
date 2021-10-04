@@ -1,12 +1,15 @@
-import { Story, Meta } from '@storybook/react';
-import { Container, ContainerProps } from './container';
+import { Meta } from '@storybook/react';
+import { Container } from './container';
 
 export default {
   component: Container,
-  title: 'Container',
+  title: 'Building Blocks / Containers',
 } as Meta;
 
-const Template: Story<ContainerProps> = (args) => <Container {...args} />;
+export const Primary = () => {
+  return(<Container bg="light" border="dark" padding="1rem">Primary Container</Container>)
+}
 
-export const Primary = Template.bind({});
-Primary.args = {};
+export const ResultsContainer = () => {
+  return(<Container bg="light" border="light" padding="3rem" justifyContent="center"><code>Results Container</code></Container>)
+}

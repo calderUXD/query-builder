@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Components from './components';
+import Rule from './rule';
 
-describe('Components', () => {
+describe('Rule', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Components />);
+    const { baseElement } = render(<Rule />);
     expect(baseElement).toBeTruthy();
   });
 });
