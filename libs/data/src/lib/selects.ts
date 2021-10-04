@@ -49,7 +49,7 @@ export const operators: OperatorTypes = {
     },
     int: {
         "Equals": { value: "=" },
-        "Between": { value: "LIKE" },
+        "Between": { value: "BETWEEN" },
         "Greater Than": { value: ">" },
         "Less Than": { value: "<" },
         "In List": { value: "IN" }
