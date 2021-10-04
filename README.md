@@ -13,7 +13,7 @@ Quantum Metrics Test Project
 
 - [APP](https://github.com/calderUXD/query-builder/tree/main/apps/query) : Core app
 - [COMPONENTS Lib](https://github.com/calderUXD/query-builder/tree/main/libs/components) : Core Components and Storybook
-- [DATA/Models](https://github.com/calderUXD/query-builder/tree/main/libs/data) : Models, Interfaces, Dropdwons
+- [DATA/Models](https://github.com/calderUXD/query-builder/tree/main/libs/data) : Models, Interfaces, Dropdowns
 - [STATE MANAGEMENT](https://github.com/calderUXD/query-builder/tree/main/libs/state) : State, Reducers, Actions
 
 ## Run Project
