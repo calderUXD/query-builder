@@ -6,10 +6,6 @@ const getPredicate = (predicate:string) => predicates[predicate].value;
 const stringOp = operators["string"];
 const intOp = operators["int"];
 const getOperator = (type:string, operator:string) => {
-    console.log("type", type);
-    console.log("operator", operator);
-    console.log(intOp);
-
     return type === "string" ? stringOp[operator].value : intOp[operator].value;
 }
 const getValue = (operator:string, value: any) => {

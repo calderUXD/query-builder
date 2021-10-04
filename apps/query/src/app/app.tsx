@@ -44,9 +44,11 @@ export function App() {
   const dispatch = useDispatch();
 
   const setResults = () => {
-    const formattedResults = generateSQL(ruleList, ruleids);
+    if(isValid){
+      const formattedResults = generateSQL(ruleList, ruleids);
+      formattedResults && updateResults(formattedResults);
+    }
     
-    formattedResults && updateResults(formattedResults);
   }
 
   return (
@@ -65,7 +67,7 @@ export function App() {
         <Button onClick={() => dispatch(resetRules())} btnTheme="secondary">Reset</Button>
       </ButtonBar>
       <Container bg="light" border="light" padding="3rem" justifyContent="center">
-        <span>{results && <code>Select * FROM </code>}{results ? results.map((result, i) => i === 0 ? <code>{result}</code> : <code>{` AND ${result}`}</code>) : "no query generated"}</span>
+        <span>{results && <code><b>SELECT</b> * <b>FROM</b> session <b>WHERE</b> </code>}{results ? results.map((result, i) => i === 0 ? <code>{result}</code> : <code><b> AND </b>{result}</code>) : "no query generated"}</span>
       </Container>
     </Wrap>
   );
