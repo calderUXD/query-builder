@@ -2,7 +2,6 @@ import { RuleTypes } from "./interfaces";
 import { predicates, operators } from "./selects";
 
 const getPredicate = (predicate:string) => predicates[predicate].value;
-// eslint-disable-next-line no-sequences
 const stringOp = operators["string"];
 const intOp = operators["int"];
 const getOperator = (type:string, operator:string) => {

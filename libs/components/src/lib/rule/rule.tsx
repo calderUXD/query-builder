@@ -51,7 +51,7 @@ export function Rule({id}: RuleProps) {
         {currentRule.predicate && <Select 
           options={Object.keys(predicates[currentRule.predicate].type === "string" ? stringOps : intOps )} 
           selected={currentRule.operator} 
-          placeholder="Select Predicate"
+          placeholder="Select Operator"
           onSelect={(val) => dispatch(setOperator({id: id, value: val }))}
           controlled
         />}
