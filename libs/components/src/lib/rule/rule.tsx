@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
 import styled from '@emotion/styled';
 import { Select } from '../select/select';
 import { Label } from '../label/label';
-import { RootState, setPredicate, setOperator, setValue } from '@query-builder/state';
+import { RootState, setPredicate, setOperator, setValue, checkValid } from '@query-builder/state';
 import { useSelector, useDispatch } from 'react-redux';
 import Value from './value';
 
@@ -28,6 +29,11 @@ export function Rule({id}: RuleProps) {
   const intOps = useSelector((state: RootState) => state.QueryBulder.operators["int"]);
   const currentRule = useSelector((state: RootState) => state.QueryBulder.rules[id]);
   const dispatch = useDispatch();
+
+    useEffect(() => {
+      const isValidCheck = Object.values(currentRule).includes(null);
+      dispatch(checkValid(!isValidCheck));
+    });
 
   return (
     <Wrap>

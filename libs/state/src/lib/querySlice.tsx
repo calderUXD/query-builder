@@ -1,13 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { OperatorTypes, operators, predicates, SelectData } from '@query-builder/data';
+import { OperatorTypes, operators, predicates, SelectData, RuleTypes } from '@query-builder/data';
 import {omit} from 'lodash';
-
-type RuleTypes = {
-    id: number,
-    predicate: null | string,
-    operator: null | string,
-    value: undefined | string | number | Array<number>
-};
 
 export interface QueryBuilderState {
     predicates: SelectData,
@@ -125,10 +118,16 @@ export const queryBulderSlice = createSlice({
                 }
             }
         }
+    },
+    checkValid: (state, action: PayloadAction<boolean>) => {
+        return {
+            ...state,   
+            valid: action.payload
+        }
     }
   },
 });
 
-export const { addRule, deleteRule, resetRules, setPredicate, setOperator, setValue } = queryBulderSlice.actions;
+export const { addRule, deleteRule, resetRules, setPredicate, setOperator, setValue, checkValid } = queryBulderSlice.actions;
 
 export default queryBulderSlice.reducer;

@@ -10,6 +10,7 @@ export interface ButtonProps {
   children: React.ReactNode,
   icon?: React.ReactNode,
   onClick: () => void,
+  disabled: boolean,
   css?: any
 }
 
@@ -23,6 +24,10 @@ const bgHover = ({btnTheme}:ButtonProps) => css`
   color: ${btnTheme === "none" ? darken(0.1, `${theme.buttons.secondary}`) : "#fff"};
 `;
 
+const disabledBtn = ({disabled}:ButtonProps) => css`
+  cursor: ${disabled && "not-allowed"};
+`;
+
 const StyledButton = styled.div<ButtonProps>`
   ${dynamicStyle};
   display: inline-flex;
@@ -34,6 +39,7 @@ const StyledButton = styled.div<ButtonProps>`
   &:hover {
     ${bgHover};
   }
+  ${disabledBtn}
 `;
 
 const IconWrap = styled.div`
@@ -43,9 +49,9 @@ const IconWrap = styled.div`
   justify-content: center;
 `;
 
-export function Button({children, btnTheme, icon, css, onClick, ...props}: ButtonProps) {
+export function Button({children, btnTheme, icon, css, onClick, disabled, ...props}: ButtonProps) {
   return (
-    <StyledButton btnTheme={btnTheme} onClick={onClick} {...props}>
+    <StyledButton btnTheme={btnTheme} onClick={onClick} disabled={disabled} {...props}>
       {icon && <IconWrap>{icon}</IconWrap>}
       {children}
     </StyledButton>
@@ -54,6 +60,7 @@ export function Button({children, btnTheme, icon, css, onClick, ...props}: Butto
 
 Button.defaultProps = {
   btnTheme: "primary",
+  disabled: false
 }
 
 export default Button;

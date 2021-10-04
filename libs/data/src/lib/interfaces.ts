@@ -1,13 +1,19 @@
 export interface SelectOption {
     value: string,
-    type?: "string" | "int"
+    type?: string
 };
 
 export type SelectData = {
    [key: string] : SelectOption
-} ;
+};
 
 export interface OperatorTypes {
-    string: SelectData,
-    int: SelectData
+    [type: string]: SelectData
 }
+
+export interface RuleTypes {
+    id: number,
+    predicate: null | string,
+    operator: null | string,
+    value: undefined | string | number | Array<number>
+};

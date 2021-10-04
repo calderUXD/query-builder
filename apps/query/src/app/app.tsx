@@ -5,6 +5,8 @@ import { Container, Button, ClosableContainer, Rule } from '@query-builder/compo
 import { BsSearch } from 'react-icons/bs';
 import { useSelector, useDispatch } from 'react-redux';
 import {RootState, addRule, deleteRule, resetRules } from '@query-builder/state';
+import { generateSQL } from '@query-builder/data';
+import { useState } from 'react';
 
 
 const Wrap = styled.div`
@@ -35,10 +37,17 @@ const RulesList = styled.div`
 `;
 
 export function App() {
-  const QR = useSelector((state: RootState) => state.QueryBulder.results);
   const ruleList = useSelector((state: RootState) => state.QueryBulder.rules);
   const ruleids = useSelector((state: RootState) => state.QueryBulder.rulesIds);
+  const isValid = useSelector((state: RootState) => state.QueryBulder.valid);
+  const [results, updateResults] = useState<null | string[]>(null);
   const dispatch = useDispatch();
+
+  const setResults = () => {
+    const formattedResults = generateSQL(ruleList, ruleids);
+    
+    formattedResults && updateResults(formattedResults);
+  }
 
   return (
     <Wrap>
@@ -52,11 +61,11 @@ export function App() {
       </RulesList>
       <Button btnTheme="primary" onClick={() => dispatch(addRule())} css={SmBtn}>And</Button>
       <ButtonBar>
-        <Button onClick={() => null} btnTheme="primary" icon={<BsSearch />}>Search</Button>
+        <Button disabled={!isValid} onClick={() => setResults()} btnTheme="primary" icon={<BsSearch />}>Search</Button>
         <Button onClick={() => dispatch(resetRules())} btnTheme="secondary">Reset</Button>
       </ButtonBar>
       <Container bg="light" border="light" padding="3rem" justifyContent="center">
-        <code>{QR ? QR : "no query generated"}</code>
+        <span>{results && <code>Select * FROM </code>}{results ? results.map((result, i) => i === 0 ? <code>{result}</code> : <code>{` AND ${result}`}</code>) : "no query generated"}</span>
       </Container>
     </Wrap>
   );

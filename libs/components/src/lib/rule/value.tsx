@@ -26,7 +26,6 @@ export function Value({operator, type, onChange, value}: ValueProps) {
   const isArray = Array.isArray(value) ? value : []; 
   const singleValue = !Array.isArray(value) ? value : "";
   const [between, setBetween] = useState<any[]>(isArray);
-  //const [singleVal, setSingle] = useState<string | number>(singleValue);
   
 
   useEffect(() => {
